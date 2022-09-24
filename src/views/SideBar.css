@@ -1,0 +1,67 @@
+.sidebar {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 260px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 40px;
+    padding-left: 50px;
+}
+
+.logo-text {
+    text-transform: uppercase;
+    font-size: 40px;
+    padding: 0; 
+    margin: 0;
+    font-weight: bolder;
+    color: #343434;
+}
+
+.menu-text {
+    font-size: 20px;
+    padding-top: 20px;
+    font-weight: 500;
+    color: #d13f51;
+}
+
+.sidebar-list {
+    height: auto;
+    padding: 0;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.sidebar-list .row {
+    color: #858585;
+    width: 95%;
+    height: 5px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 25px;
+    margin-bottom: 25px;
+}
+
+.sidebar-list .row:hover {
+    cursor: pointer;
+}
+
+.sidebar-list #active {
+    background-color: #f4c8cd;
+    border-radius: 5px;
+}
+
+.icon {
+    font-size: 28px;
+    padding-left: 10px;
+}
+
+.title {
+    padding-bottom: 2px;
+    padding-left: 15px;
+}
