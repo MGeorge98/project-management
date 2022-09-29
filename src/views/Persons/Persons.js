@@ -1,7 +1,7 @@
 import React from 'react'
-import '../views/Projects.css'
-import PersonsButtons from '../components/PersonsButtons';
-import PersonsList from '../components/PersonsList';
+import './Persons.css'
+import PersonsButtons from '../../components/Persons/PersonsButtons';
+import PersonsList from '../../components/Persons/PersonsList';
 
 function Persons() {
   return (

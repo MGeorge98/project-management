@@ -1,7 +1,7 @@
 import React from 'react'
-import '../views/Dashboard.css';
-import ProjectStatistics from '../components/ProjectStatistics';
-import DeadlinesStartdatesPersons from '../components/DeadlinesStartdatesPersons';
+import './Dashboard.css';
+import ProjectStatistics from '../../components/Dashboard/ProjectStatistics';
+import DeadlinesStartdatesPersons from '../../components/Dashboard/DeadlinesStartdatesPersons';
 
 const Dashboard = () => {
   return (

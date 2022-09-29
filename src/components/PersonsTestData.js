@@ -5,6 +5,12 @@ export const PersonsTestData = [
         lastName: "Martinas",
         position: "FRONTEND WANNABE"
     },
+    {
+        id: 2,
+        firstName: "George",
+        lastName: "Martinas",
+        position: "FRONTEND WANNABE"
+    },
     
 
 ]

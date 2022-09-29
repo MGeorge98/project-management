@@ -1,11 +1,24 @@
 import React from 'react'
-import '../views/SideBar.css'
-import {SidebarData} from '../components/SidebarData'
+import './Header.css'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Button, Typography } from '@mui/material';
+import {SidebarData} from '../../components/SidebarData'
 
-const Sidebar = () => {
+
+
+
+const Header = () => {
   return (
     <React.Fragment>
-        <section>
+      <section>
+        <div className="header">
+          <div className="header-title">{window.location.pathname.substring(1)}</div>
+          <div className="user">
+            <Button sx={{ mr: 5 }} color='secondary' endIcon={<AccountCircleIcon fontSize="large" />}><Typography fontWeight={800}>George M.</Typography></Button>
+          </div>
+        </div>
+      </section>
+      <section>
             <div className="sidebar">
                 <div className="logo-text">PLANNER</div>
                 <div className="menu-text">Menu</div>
@@ -32,4 +45,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default Header

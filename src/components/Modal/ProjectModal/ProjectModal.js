@@ -29,3 +29,6 @@ ACUM FOARTE IMPORTANT!!!!
 
 Ce se randeaza pe ecran ca si pagina va sta in directorul VIEWS
 Fiecare componenta in parte va fi localizata intr-un director ( NumeComponenta ) si va avea fisier .js si .css IN DIRECTOR
+
+ui:"{"modalProps":{"open":false,"mode":"create","type":"person"}}"
+ui:"{"modalProps":{"open":true}}"

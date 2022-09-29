@@ -1,7 +1,7 @@
 import React from 'react'
-import '../views/Projects.css'
-import ProjectsButtons from '../components/ProjectsButtons'
-import ProjectsList from '../components/ProjectsList'
+import './Projects.css'
+import ProjectsButtons from '../../components/Projects/ProjectsButtons'
+import ProjectsList from '../../components/Projects/ProjectsList'
 
 function Projects() {
     return (

@@ -1,16 +1,15 @@
 import './App.css'
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Projects from './pages/Projects';
-import Persons from './pages/Persons';
-import Sidebar from './layouts/SideBar';
-import Header from './layouts/Header';
-import { createMuiTheme, ThemeProvider } from '@mui/material'
+import Dashboard from './views/Dashboard/Dashboard';
+import Projects from './views/Projects/Projects';
+import Persons from './views/Persons/Persons';
+import Header from './views/Header/Header';
+import { createTheme, ThemeProvider } from '@mui/material'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#ffffff',
@@ -34,7 +33,6 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <div className="App">
-            <Sidebar />
             <Header />
             <div className="content">
               <Routes>
