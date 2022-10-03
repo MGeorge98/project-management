@@ -3,16 +3,12 @@ import { DatePicker } from "@mui/x-date-pickers";
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { updateProject, deleteProject } from "../../../slices/projectsSlice";
-import Moment from "moment"
+import { updateProject, deleteProject, selectedProject, getAllProjects } from "../../../slices/projectsSlice";
 import { setModalState } from "../../../slices/uiSlice";
 
 const AddProjectForm = () => {
     const dispatch = useDispatch();
-
-    const projectSelected = useSelector((state) => state.projects.selectedProject)
-    const projectData = useSelector((state) => state.projects.project)
-
+    const projectSelected = useSelector(selectedProject)
     const [title, setTitle] = useState(projectSelected.title)
     const [description, setDescription] = useState(projectSelected.description)
     const [selectedStartDate, setSelectedStartDate] = useState(projectSelected.startDate)
@@ -20,12 +16,13 @@ const AddProjectForm = () => {
     const [selectedEndDate, setSelectedEndDate] = useState(projectSelected.endDate)
 
     const handleEditProject = () => {
-        dispatch(updateProject({id: projectSelected.id, title: title, description: description, startDate: Moment(selectedStartDate).format('L'), deadline: Moment(selectedDeadline).format('L'), endDate: Moment(selectedEndDate).format('L')}))
+        dispatch(updateProject({id: projectSelected.id, deadline: selectedDeadline, description: description, endDate: selectedEndDate, startDate: selectedStartDate, title: title }))
+        dispatch(getAllProjects())
         dispatch(setModalState({ open: false }))
     }
 
     const handleDeleteProject = () => {
-        dispatch(deleteProject({id: projectSelected.id}))
+        dispatch(deleteProject(projectSelected.id))
         dispatch(setModalState({ open: false }))
     }
 

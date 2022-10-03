@@ -1,0 +1,19 @@
+// createProject: (state, action) => {
+//             // console.log("ACTION.PAYLOAD:",action.payload)
+//             state.project.push(action.payload);
+//         },
+//         deleteProject: (state, action) => {
+//             state.project = state.project.filter((project) => project.id !== action.payload.id);
+//         },
+//         updateProject: (state, action) => {
+//             state.project.map((project) => {
+//               if(project.id === action.payload.id) {
+//                 project.title = action.payload.title;
+//                 project.description = action.payload.description;
+//                 project.startDate = action.payload.startDate;
+//                 project.deadline = action.payload.deadline;
+//                 project.endDate = action.payload.endDate;
+                
+//               }
+//             })
+//           },

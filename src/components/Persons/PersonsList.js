@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Stack, IconButton } from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { useSelector, useDispatch } from 'react-redux'
 import { setModalState } from '../../slices/uiSlice';
-import { setSelectedPerson } from '../../slices/personsSlice';
+import { getAllPersons, setSelectedPerson } from '../../slices/personsSlice';
 import ModalPopup from '../Modal/ModalPopup';
 
 const style3 = {
@@ -18,7 +18,11 @@ const PersonsList = () => {
     
     const dispatch = useDispatch();
 
-    const personsData = useSelector((state) => state.persons.person)
+    useEffect(() => {
+        dispatch(getAllPersons());
+    }, []);
+
+    const personsData = useSelector((state) => state.persons.persons)
     const modalState = useSelector((state) => state.ui)
     const personSelected = useSelector((state) => state.persons.selectedPerson)
 

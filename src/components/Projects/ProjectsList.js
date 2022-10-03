@@ -1,10 +1,11 @@
 import { Box, Stack, Typography, IconButton } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import PeopleIcon from '@mui/icons-material/People';
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedProject } from '../../slices/projectsSlice';
+import { getAllProjects, setSelectedProject } from '../../slices/projectsSlice';
 import ModalPopup from '../Modal/ModalPopup';
 import { setModalState } from '../../slices/uiSlice';
+import Moment from "moment"
 
 const style2 = {
     bgcolor: '#ffffff',
@@ -14,13 +15,18 @@ const style2 = {
     boxShadow: 3,
 }
 
+
+
 const ProjectsList = () => {
     
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllProjects())
+    }, []);
     
-    const projectData = useSelector((state) => state.projects.project)
+    const projectData = useSelector((state) => state.projects.projects)
     const modalState = useSelector((state) => state.ui)
-    const projectSelected = useSelector((state) => state.projects.selectedProject)
 
     const handleOpen = (mode) => {
         if (mode === "EDIT") {
@@ -61,10 +67,10 @@ const ProjectsList = () => {
                                 {project.description}
                             </Box>
                             <Box sx={{ mt: 2, fontWeight: 'bold', fontFamily: 'Arial', color: 'text.disabled' }}>
-                                {"Start: " +project.startDate}
+                                {"Start: " +Moment(project.startDate).format('L')}
                             </Box>
                             <Box sx={{ mt: 2, fontWeight: 'bold', fontFamily: 'Arial', color: 'error.main' }}>
-                                {"Deadline: " + project.deadline}
+                                {"Deadline: " + Moment(project.deadline).format('L')}
                             </Box>
                         </Stack>
                     </Box>

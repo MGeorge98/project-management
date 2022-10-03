@@ -1,12 +1,11 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deletePerson, updatePerson } from "../../../slices/personsSlice";
+import { deletePerson, updatePerson, selectedPerson } from "../../../slices/personsSlice";
 import { setModalState } from "../../../slices/uiSlice";
 
 const EditPersons = () => {
-    const personSelected = useSelector((state) => state.persons.selectedPerson)
-    const personData = useSelector((state) => state.persons.person)
+    const personSelected = useSelector(selectedPerson)
     const dispatch = useDispatch();
     const [firstName, setFirstName] = useState(personSelected.firstName);
     const [lastName, setLastName] = useState(personSelected.lastName);
@@ -18,7 +17,7 @@ const EditPersons = () => {
     }
 
     const handleDeletePerson = () => {
-        dispatch(deletePerson({id: personSelected.id}))
+        dispatch(deletePerson(personSelected.id))
         dispatch(setModalState({ open: false }))
     }
 

@@ -2,7 +2,7 @@ import { Button, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { createPerson } from "../../../slices/personsSlice";
+import { createNewPerson } from "../../../slices/personsSlice";
 import { setModalState } from "../../../slices/uiSlice";
 
 const AddPersons = () => {
@@ -14,16 +14,12 @@ const AddPersons = () => {
     const [position, setPosition] = useState("");
 
     const handleCreatePerson = () => {
-        if (personData.length === 0) {
-            dispatch(createPerson({ id: 1, firstName: firstName, lastName: lastName, position: position }))
-
-        } else {
-            dispatch(createPerson({ id: personData[personData.length - 1].id + 1, firstName: firstName, lastName: lastName, position: position }))
-        }
+        dispatch(createNewPerson({ firstName: firstName, lastName: lastName, position: position }))
         dispatch(setModalState({ open: false }))
-        console.log("First name", firstName)
-        console.log("Last name", lastName)
-        console.log("Position", position)
+
+        // console.log("First name", firstName)
+        // console.log("Last name", lastName)
+        // console.log("Position", position)
     }
     return (
         <div>
