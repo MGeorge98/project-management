@@ -6,6 +6,7 @@ import AddPersons from './PersonModal/AddPersons';
 import EditPersons from './PersonModal/EditPersons';
 import AddProjectForm from './ProjectModal/AddProjectForm';
 import EditProject from './ProjectModal/EditProject';
+import AssignPersons from './PersonModal/AssignPersons';
 
 const style = {
     position: 'absolute',
@@ -34,6 +35,7 @@ const ModalPopup = () => {
                     {modalState.modalProps.mode === "EDIT" && modalState.modalProps.type === "PERSON" && <EditPersons />}
                     {modalState.modalProps.mode === "CREATE" && modalState.modalProps.type === "PROJECT" && <AddProjectForm />}
                     {modalState.modalProps.mode === "EDIT" && modalState.modalProps.type === "PROJECT" && <EditProject />}
+                    {modalState.modalProps.mode === "ASSIGN_PERSON" && <AssignPersons />}
                 </Box>
             </Modal>
      );

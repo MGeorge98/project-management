@@ -15,16 +15,17 @@ const style3 = {
 }
 
 const PersonsList = () => {
-    
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getAllPersons());
-    }, []);
+    },);
 
     const personsData = useSelector((state) => state.persons.persons)
     const modalState = useSelector((state) => state.ui)
     const personSelected = useSelector((state) => state.persons.selectedPerson)
+    const statusSelected = useSelector((state) => state.ui.selectedStatus)
 
     const handleOpen = (mode) => {
         if (mode === "EDIT") {
@@ -50,37 +51,92 @@ const PersonsList = () => {
             spacing={2}
         >
             {personsData.map((person, key) => {
-                return (
-                    <Box sx={style3}
-                        onClick={() => handleSelectPerson(person)}
-                    >
-                        <Stack
-                            sx={{ mt: 3, ml: 1 }}
-                            direction="row"
-                            justifyContent="flex-start"
-                            alignItems="center"
-                            spacing={3}
+                if ((statusSelected === "AVAILABLE") && (person.isAvailable === true))
+                    return (
+                        <Box sx={style3}
+                            onClick={() => handleSelectPerson(person)}
                         >
-                            <IconButton color='secondary'
-
-
+                            <Stack
+                                sx={{ mt: 3, ml: 1 }}
+                                direction="row"
+                                justifyContent="flex-start"
+                                alignItems="center"
+                                spacing={3}
                             >
-                                <AccountCircleIcon fontSize='large' />
-                            </IconButton>
+                                <IconButton color='secondary'
+                                >
+                                    <AccountCircleIcon fontSize='large' />
+                                </IconButton>
 
-                            <Stack>
-                                <Box>
-                                    {person.firstName + " " + person.lastName}
-                                </Box>
-                                <Box sx={{ color: 'error.main' }}>
-                                    {person.position}
-                                </Box>
+                                <Stack>
+                                    <Box>
+                                        {person.firstName + " " + person.lastName}
+                                    </Box>
+                                    <Box sx={{ color: 'error.main' }}>
+                                        {person.position}
+                                    </Box>
+                                </Stack>
                             </Stack>
-                        </Stack>
+                        </Box>
+                    )
+                if ((statusSelected === "ON_PROJECT") && (person.isAvailable === false))
+                    return (
+                        <Box sx={style3}
+                            onClick={() => handleSelectPerson(person)}
+                        >
+                            <Stack
+                                sx={{ mt: 3, ml: 1 }}
+                                direction="row"
+                                justifyContent="flex-start"
+                                alignItems="center"
+                                spacing={3}
+                            >
+                                <IconButton color='secondary'
+                                >
+                                    <AccountCircleIcon fontSize='large' />
+                                </IconButton>
 
-                    </Box>
-                )
-            })}
+                                <Stack>
+                                    <Box>
+                                        {person.firstName + " " + person.lastName}
+                                    </Box>
+                                    <Box sx={{ color: 'error.main' }}>
+                                        {person.position}
+                                    </Box>
+                                </Stack>
+                            </Stack>
+                        </Box>
+                    )
+                if (statusSelected === "ALL")
+                    return (
+                        <Box sx={style3}
+                            onClick={() => handleSelectPerson(person)}
+                        >
+                            <Stack
+                                sx={{ mt: 3, ml: 1 }}
+                                direction="row"
+                                justifyContent="flex-start"
+                                alignItems="center"
+                                spacing={3}
+                            >
+                                <IconButton color='secondary'
+                                >
+                                    <AccountCircleIcon fontSize='large' />
+                                </IconButton>
+
+                                <Stack>
+                                    <Box>
+                                        {person.firstName + " " + person.lastName}
+                                    </Box>
+                                    <Box sx={{ color: 'error.main' }}>
+                                        {person.position}
+                                    </Box>
+                                </Stack>
+                            </Stack>
+                        </Box>
+                    )
+            }
+            )}
 
             {modalState.modalProps.open === true && <ModalPopup />}
         </Stack>

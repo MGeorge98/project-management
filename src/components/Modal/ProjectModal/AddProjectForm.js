@@ -2,10 +2,9 @@ import { Button, Stack, TextField, Typography } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import React from "react";
 import { useState } from "react";
-import { createNewProject } from "../../../slices/projectsSlice";
+import { createNewProject, getAllProjects } from "../../../slices/projectsSlice";
 import { useDispatch, useSelector } from 'react-redux'
 import { setModalState } from "../../../slices/uiSlice";
-import Moment from "moment"
 
 const AddProjectForm = () => {
     const dispatch = useDispatch();
@@ -25,8 +24,8 @@ const AddProjectForm = () => {
 
         dispatch(createNewProject({ deadline: selectedDeadline, description: description, endDate: selectedEndDate, startDate: selectedStartDate, title: title }
         ))
-
         dispatch(setModalState({ open: false }))
+        dispatch(getAllProjects())
     }
 
     return (

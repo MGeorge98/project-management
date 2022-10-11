@@ -9,6 +9,7 @@ const CREATE_PERSON_URL = 'http://192.168.56.1:8080/manager/api/person/create';
 const initialState = {
   persons: [],
   selectedPerson: {},
+  assignedPersons: [],
   isSucces: false,
   message: "",
   isLoading: false,
@@ -20,6 +21,30 @@ export const getAllPersons = createAsyncThunk(
     try {
       const resp = await axios.get(PERSONS_URL);
       return resp.data;
+    } catch (error) {
+      return rejectWithValue(error.resp.data);
+    }
+  }
+);
+
+export const getAssignedPersons = createAsyncThunk(
+  "persons/getAssignedPersons",
+  async ( data, rejectWithValue ) => {
+    try {
+      const resp = await axios.get('http://192.168.56.1:8080/manager/api/project/getAssignedPersons?projectId='+data);
+      return resp.data;
+    } catch (error) {
+      return rejectWithValue(error.resp.data);
+    }
+  }
+);
+
+export const assignOrUnassignPerson = createAsyncThunk(
+  "persons/assignOrUnassignPerson", 
+  async({personId, projectId}, rejectWithValue) => {
+    try {
+      const resp = await axios.post('http://192.168.56.1:8080/manager/api/project/assignOrUnassignPerson?personId='+personId+'&projectId='+projectId);
+      return resp.data
     } catch (error) {
       return rejectWithValue(error.resp.data);
     }
@@ -68,7 +93,7 @@ export const personsSlice = createSlice({
   reducers: {
       setSelectedPerson: (state, action) => {
         state.selectedPerson = action.payload;
-      }
+      },
     },
     extraReducers: {
       [getAllPersons.pending]: (state) => {
@@ -84,6 +109,12 @@ export const personsSlice = createSlice({
         state.isLoading = false;
         state.message = action.payload;
         state.isSucces = false;
+      },
+      [getAssignedPersons.fulfilled]: (state, action) => {
+        console.log(action);
+        state.isLoading = false;
+        state.assignedPersons = action.payload;
+        state.isSucces = true;
       },
     }
   })

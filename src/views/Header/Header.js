@@ -2,12 +2,19 @@ import React from 'react'
 import './Header.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button, Typography } from '@mui/material';
-import {SidebarData} from '../../components/SidebarData'
+import {SidebarData} from '../../components/SidebarData';
+import { useDispatch } from 'react-redux';
+import { toggleSelectedStatus } from '../../slices/uiSlice';
 
 
 
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const handleNav = (value) => {
+    {window.location.pathname = value.link}
+    dispatch(toggleSelectedStatus("ALL"))
+  }
   return (
     <React.Fragment>
       <section>
@@ -29,7 +36,7 @@ const Header = () => {
                         <li 
                         className='row'
                         id={window.location.pathname === value.link ? "active" : ""}
-                        key={key} onClick={() => {window.location.pathname = value.link}}
+                        key={key} onClick={() => handleNav(value)}
                         >
                           <span className='icon'>{value.icon}</span>
                           <span className='title'>{value.title}</span>

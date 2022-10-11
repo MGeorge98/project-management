@@ -3,6 +3,7 @@ import { Box, Button, Stack } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux';
 import { setModalState } from '../../slices/uiSlice';
 import ModalPopup from '../Modal/ModalPopup'
+import { toggleSelectedStatus } from '../../slices/uiSlice';
 
 const PersonsButtons = () => {
 
@@ -20,6 +21,10 @@ const PersonsButtons = () => {
         }
     }
 
+    const handleSelectedStatus = (status) => {
+        dispatch(toggleSelectedStatus(status))
+    }
+
     return (
         <Box component="span"
             display="flex"
@@ -33,6 +38,7 @@ const PersonsButtons = () => {
                     variant='contained'
                     size='medium'
                     sx={{ width: 140, height: 45 }}
+                    onClick={() => handleSelectedStatus("AVAILABLE")}
                 >
                     AVAILABLE
                 </Button>
@@ -40,6 +46,7 @@ const PersonsButtons = () => {
                     variant='contained'
                     size='medium'
                     sx={{ width: 140 }}
+                    onClick={() => handleSelectedStatus("ON_PROJECT")}
                 >
                     ON PROJECT
                 </Button>

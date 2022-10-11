@@ -1,7 +1,7 @@
 import { Box, Button, Stack, Modal } from '@mui/material'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { setModalState } from '../../slices/uiSlice';
+import { setModalState, toggleSelectedStatus } from '../../slices/uiSlice';
 import ModalPopup from '../Modal/ModalPopup';
 
 
@@ -28,6 +28,10 @@ const ProjectsButtons = () => {
             }))
         }
     }
+    const handleSelectedStatus = (status) => {
+        dispatch(toggleSelectedStatus(status))
+    }
+
     return (
         <Box component="span"
             display="flex"
@@ -37,6 +41,7 @@ const ProjectsButtons = () => {
                     variant='contained'
                     size='medium'
                     sx={{ width: 140, height: 45 }}
+                    onClick={() => handleSelectedStatus("IN_PROGRESS")}
                 >
                     IN PROGRESS
                 </Button>
@@ -44,6 +49,7 @@ const ProjectsButtons = () => {
                     variant='contained'
                     size='medium'
                     sx={{ width: 140 }}
+                    onClick={() => handleSelectedStatus("PENDING")}
                 >
                     PENDING
                 </Button>
@@ -51,6 +57,7 @@ const ProjectsButtons = () => {
                     variant='contained'
                     size='medium'
                     sx={{ width: 140 }}
+                    onClick={() => handleSelectedStatus("DONE")}
                 >
                     DONE
                 </Button>

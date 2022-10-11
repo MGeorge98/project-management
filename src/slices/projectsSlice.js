@@ -8,7 +8,6 @@ const CREATE_PROJECT_URL = 'http://192.168.56.1:8080/manager/api/project';
 const initialState = {
   projects: [],
   selectedProject: {},
-  selectedStatus: "IN_PROGRESS",
   isSucces: false,
   message: "",
   isLoading: false,
